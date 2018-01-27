@@ -16,9 +16,10 @@ services:
 
   manager.product:
     class: AppBundle\Manager\ProductManager
-    arguments: ['@repository.product']
-
-
+    arguments:
+      $repository: '@repository.product'
+      $validator: '@object_validator'
+      $entityManager: '@doctrine.orm.entity_manager'
 
   AppBundle\Repository\ProductRepository: "@repository.product"
 

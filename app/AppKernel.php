@@ -25,6 +25,9 @@ class AppKernel extends Kernel
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+        }
+
+        if (in_array($this->getEnvironment(), ['dev', 'test', 'behat'], true)) {
             $bundles[] = new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 

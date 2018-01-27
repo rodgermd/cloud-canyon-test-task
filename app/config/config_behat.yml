@@ -1,0 +1,12 @@
+imports:
+    - { resource: config.yml }
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                driver:   pdo_sqlite
+                # should be executed for Behat
+                #            #sudo setfacl -R -m u:"www-data":rwX -m u:`whoami`:rwX app/cache/behat/behat.db
+                path:     '%kernel.cache_dir%/test.db'

@@ -1,0 +1,14 @@
+default:
+  suites:
+    api:
+      paths:
+          - 'features/API/Product'
+      contexts:
+          - json_spec
+          - BehatTests\Context\ProductContext
+          - BehatTests\Context\FeatureContext
+  extensions:
+    JsonSpec\Behat\Extension: ~
+    Behat\Symfony2Extension:
+      kernel:
+          env: behat

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Test app" default="behat" basedir=".">
+  <property name="source" value="src"/>
+  <target
+      name="behat:prepare-db-for-tests"
+      depends="behat:database-schema-drop, behat:database-schema-create, behat:database-fixtures-load, behat:permit-group-access, behat:remember-db-pattern-file"/>
+  <target name="prepare-db-for-tests" depends="behat:prepare-db-for-tests"/>
+
+  <target name="behat:database-schema-drop" description="database-schema-drop">
+    <SymfonyConsole command="doctrine:schema:drop" checkreturn="true">
+      <arg name="env" value="behat"/>
+      <arg name="force"/>
+    </SymfonyConsole>
+  </target>
+
+  <target name="behat:database-schema-create" description="database-schema-create">
+    <SymfonyConsole command="doctrine:schema:create" checkreturn="true">
+      <arg name="env" value="behat"/>
+    </SymfonyConsole>
+  </target>
+
+  <target name="behat:database-fixtures-load" description="database-fixtures-load">
+    <SymfonyConsole command="doctrine:fixtures:load" checkreturn="true">
+      <arg name="env" value="behat"/>
+      <arg name="no-interaction"/>
+    </SymfonyConsole>
+  </target>
+
+  <target name="behat:permit-group-access" description="Set web server group write permissions">
+    <exec command="chmod g+w ${basedir}var/cache/behat/*.db" passthru="true" checkreturn="true" logoutput="true"/>
+  </target>
+
+  <target name="behat:get-fixtures-checksum" description="Get MD5 checksum of Behat fixtures">
+    <exec command="find src/AppBundle/DataFixtures -type f -name '*.php' -exec md5sum {} + | awk '{print $1}' | sort | md5sum | sed -e 's/[[:space:]]-//'" outputProperty="fixturesCheckSum" />
+    <echo msg="Fixtures MD5 checksum:${fixturesCheckSum}" />
+  </target>
+
+  <target name="behat:remember-db-pattern-file" depends="behat:get-fixtures-checksum" description="Remember a pattern for fresh loaded DB">
+    <exec command="cp ${basedir}var/cache/behat/test.db ${basedir}var/cache/behat/test.db.${fixturesCheckSum}" passthru="true" checkreturn="true" logoutput="true"/>
+    <echo msg="Pattern file created: var/cache/behat/test.db.${fixturesCheckSum}" />
+  </target>
+
+  <target name="behat" depends="behat:database-schema-drop, behat:database-schema-create, behat:database-fixtures-load" description="Run all Behat tests">
+    <exec command="${basedir}bin/behat --config behat.yml.dist" passthru="true" checkreturn="true" logoutput="true"/>
+  </target>
+
+  <target name="behat-smoke" description="Run smoke Behat tests (Usually all 200 checks)">
+    <exec command="${basedir}bin/behat --config behat.yml.dist --tags='@smoke'" passthru="true" checkreturn="true" logoutput="true"/>
+  </target>
+
+</project>
+

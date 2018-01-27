@@ -7,3 +7,5 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+    uri.scheme: http
+    base_host: www.cloud-canyon.local

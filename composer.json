@@ -13,7 +13,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "Tests\\": "tests/",
+      "BehatTests\\": "features/"
     },
     "files": [
       "vendor/symfony/symfony/src/Symfony/Component/VarDumper/Resources/functions/dump.php"
@@ -37,11 +38,20 @@
     "doctrine/doctrine-fixtures-bundle"   : "@stable"
   },
   "require-dev" : {
-    "symfony/phpunit-bridge"     : "^3.0",
-    "phpunit/phpunit"            : "@stable",
-    "phpstan/phpstan"            : "@stable",
-    "mockery/mockery"            : "@stable",
-    "liip/functional-test-bundle": "@stable"
+    "symfony/phpunit-bridge"       : "^3.0",
+    "phpunit/phpunit"              : "@stable",
+    "phpstan/phpstan"              : "@stable",
+    "phing/phing"                  : "@stable",
+    "mockery/mockery"              : "@stable",
+    "liip/functional-test-bundle"  : "@stable",
+    "behat/behat"                  : "@stable",
+    "linio/behat-web-api-extension": "@stable",
+    "behat/symfony2-extension"     : "@stable",
+    "duxet/json_spec"              : "@stable",
+    "behat/mink-extension"         : "@stable",
+    "behat/mink"                   : "@stable",
+    "knplabs/friendly-contexts"    : "@stable",
+    "behat/mink-browserkit-driver" : "@stable"
   },
   "scripts"     : {
     "symfony-scripts" : [
@@ -60,7 +70,8 @@
     ]
   },
   "config"      : {
-    "sort-packages": false
+    "sort-packages": false,
+    "bin-dir"      : "bin"
   },
   "extra"       : {
     "symfony-app-dir"       : "app",

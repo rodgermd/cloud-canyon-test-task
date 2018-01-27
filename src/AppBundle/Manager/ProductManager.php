@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * Created by PhpStorm.
  * User: rodger
@@ -8,20 +8,26 @@
 
 namespace AppBundle\Manager;
 
-
 use AppBundle\Entity\Product;
 use AppBundle\Model\Request\ProductEditModel;
 use AppBundle\Model\Request\ProductListModel;
 use AppBundle\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 class ProductManager
 {
     /** @var ProductRepository */
     protected $repository;
+    /** @var ObjectValidator */
+    protected $validator;
+    /** @var EntityManagerInterface */
+    protected $entityManager;
 
-    public function __construct(ProductRepository $repository)
+    public function __construct(ProductRepository $repository, ObjectValidator $validator, EntityManagerInterface $entityManager)
     {
         $this->repository = $repository;
+        $this->validator = $validator;
+        $this->entityManager = $entityManager;
     }
 
     /**
@@ -38,6 +44,10 @@ class ProductManager
     {
         $product = new Product();
         ObjectUpdater::update($product, $editModel);
+
+        $this->validator->validate($product);
+        $this->entityManager->persist($product);
+        $this->entityManager->flush($product);
 
         return $product;
     }
