@@ -10,6 +10,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Traits\ClassConstantsTrait;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 use AppBundle\Validator\ProductConstraint;
@@ -20,8 +21,9 @@ use AppBundle\Validator\ProductConstraint;
  *
  * @package AppBundle\Entity
  *
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductRepository")
  * @ProductConstraint()
+ * @Serializer\ExclusionPolicy("ALL")
  */
 class Product
 {
@@ -35,6 +37,7 @@ class Product
      * @ORM\Column(type="bigint", nullable=false)
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @Serializer\Expose()
      */
     protected $id;
 
@@ -42,6 +45,7 @@ class Product
      * @var string
      * @ORM\Column(type="string", nullable=false, length=255)
      * @Assert\NotBlank(message="The name should not be blank")
+     * @Serializer\Expose()
      */
     protected $name;
 
@@ -55,24 +59,28 @@ class Product
      * @ORM\Column(name="product_type", type="smallint", nullable=false)
      * @Assert\NotBlank(message="The type should be defined")
      * @Assert\Choice(callback="getTypeChoices")
+     * @Serializer\Expose()
      */
     protected $type;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=100)
+     * @Serializer\Expose()
      */
     protected $color;
 
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Serializer\Expose()
      */
     protected $texture;
     /**
      * @var integer
      * @ORM\Column(type="integer")
      * @Assert\Range(min=0, minMessage="The height value should be positive")
+     * @Serializer\Expose()
      */
     protected $height;
 
@@ -80,6 +88,7 @@ class Product
      * @var integer
      * @ORM\Column(type="integer")
      * @Assert\Range(min=0, minMessage="The width value should be positive")
+     * @Serializer\Expose()
      */
     protected $width;
 
@@ -87,6 +96,7 @@ class Product
      * @var \DateTime
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", nullable=false)
+     * @Serializer\Expose()
      */
     protected $createdAt;
 
@@ -94,6 +104,7 @@ class Product
      * @var \DateTime
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
+     * @Serializer\Expose()
      */
     protected $updatedAt;
 

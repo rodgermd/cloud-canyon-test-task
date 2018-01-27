@@ -9,6 +9,9 @@ imports:
 parameters:
     locale: en
 
+sensio_framework_extra:
+    request: { converters: true }
+
 framework:
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }

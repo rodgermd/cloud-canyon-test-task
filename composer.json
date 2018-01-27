@@ -21,20 +21,21 @@
   },
   "require"     : {
     "php"                                 : ">=7.1",
-    "symfony/symfony"                     : "3.4.*",
-    "doctrine/doctrine-bundle"            : "^1.6",
-    "doctrine/orm"                        : "^2.5",
-    "incenteev/composer-parameter-handler": "^2.0",
-    "sensio/distribution-bundle"          : "^5.0.19",
-    "sensio/framework-extra-bundle"       : "^5.0.0",
-    "symfony/monolog-bundle"              : "^3.1.0",
-    "symfony/polyfill-apcu"               : "^1.0",
-    "jms/serializer-bundle"               : "@stable",
+    "symfony/symfony"                     : "^3.4@stable",
+    "symfony/monolog-bundle"              : "@stable",
+    "symfony/polyfill-apcu"               : "@stable",
+    "doctrine/doctrine-bundle"            : "@stable",
+    "doctrine/orm"                        : "@stable",
     "friendsofsymfony/rest-bundle"        : "@stable",
-    "stof/doctrine-extensions-bundle"     : "@stable"
+    "incenteev/composer-parameter-handler": "@stable",
+    "jms/serializer-bundle"               : "@stable",
+    "nelmio/api-doc-bundle"               : "@stable",
+    "sensio/distribution-bundle"          : "@stable",
+    "sensio/framework-extra-bundle"       : "@stable",
+    "stof/doctrine-extensions-bundle"     : "@stable",
+    "twig/twig"                           : "@stable"
   },
   "require-dev" : {
-    "sensio/generator-bundle"    : "^3.0",
     "symfony/phpunit-bridge"     : "^3.0",
     "phpunit/phpunit"            : "@stable",
     "phpstan/phpstan"            : "@stable",
@@ -58,7 +59,7 @@
     ]
   },
   "config"      : {
-    "sort-packages": true
+    "sort-packages": false
   },
   "extra"       : {
     "symfony-app-dir"       : "app",

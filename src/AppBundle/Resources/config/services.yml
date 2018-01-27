@@ -1,0 +1,37 @@
+services:
+  controller.product:
+    class: AppBundle\Controller\ProductController
+    arguments:
+      - manager.product
+
+  repository.product:
+    class: AppBundle\Repository\ProductRepository
+    factory: ['@doctrine.orm.default_entity_manager', 'getRepository']
+    arguments: ['AppBundle\Entity\Product']
+
+  object_validator:
+    class: AppBundle\Manager\ObjectValidator
+    arguments:
+      $validator: '@validator'
+
+  manager.product:
+    class: AppBundle\Manager\ProductManager
+    arguments: ['@repository.product']
+
+
+
+  AppBundle\Repository\ProductRepository: "@repository.product"
+
+  request_converter.abstract:
+    class: AppBundle\RequestConverter\AbstractRequestConverter
+    abstract: true
+    arguments:
+        $validator: '@object_validator'
+
+  AppBundle\RequestConverter\ProductListRequestConverter:
+    parent: request_converter.abstract
+    tags: { name: request.param_converter }
+
+  AppBundle\RequestConverter\ProductEditRequestConverter:
+    parent: request_converter.abstract
+    tags: { name: request.param_converter }
