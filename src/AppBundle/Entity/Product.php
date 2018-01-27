@@ -65,20 +65,20 @@ class Product
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      * @Serializer\Expose()
      */
     protected $color;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      * @Serializer\Expose()
      */
     protected $texture;
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min=0, minMessage="The height value should be positive")
      * @Serializer\Expose()
      */
@@ -86,7 +86,7 @@ class Product
 
     /**
      * @var integer
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      * @Assert\Range(min=0, minMessage="The width value should be positive")
      * @Serializer\Expose()
      */

@@ -33,7 +33,8 @@
     "sensio/distribution-bundle"          : "@stable",
     "sensio/framework-extra-bundle"       : "@stable",
     "stof/doctrine-extensions-bundle"     : "@stable",
-    "twig/twig"                           : "@stable"
+    "twig/twig"                           : "@stable",
+    "doctrine/doctrine-fixtures-bundle"   : "@stable"
   },
   "require-dev" : {
     "symfony/phpunit-bridge"     : "^3.0",
