@@ -74,7 +74,7 @@ class ProductValidationRulesTest extends AbstractFunctionalTestCase
         return [
             ['name', 'test', false],
             ['name', 1, false],
-            ['name', null, true, 'TypeError'],
+            ['name', null, true],
             ['color', "test", false],
             ['color', 1, false],
             ['color', null, false],

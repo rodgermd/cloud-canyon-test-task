@@ -38,6 +38,10 @@ class ProductManageTest extends AbstractUnitTestCase
         static::assertEquals(['result'], $manager->getList($model));
     }
 
+    /**
+     * @throws \ReflectionException
+     * @see ProductManager::create()
+     */
     public function testCreate()
     {
         $manager = $this->getManagerMock();
