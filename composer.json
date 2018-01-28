@@ -13,7 +13,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/",
+      "Tests\\"     : "tests/",
       "BehatTests\\": "features/"
     },
     "files": [
@@ -38,6 +38,7 @@
     "doctrine/doctrine-fixtures-bundle"   : "@stable"
   },
   "require-dev" : {
+    "ext-sqlite3"                  : "*",
     "symfony/phpunit-bridge"       : "^3.0",
     "phpunit/phpunit"              : "@stable",
     "phpstan/phpstan"              : "@stable",
